@@ -9,7 +9,7 @@ var Task = AV.Object.extend('Task');
  */
 AV.Cloud.define('hello', function(req, res) {
   console.log(req);
-  res.success('Hello world!');
+  res.success('Hello world,Tony!');
 });
 
 AV.Cloud.define('whoami', function(req, res) {
