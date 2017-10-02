@@ -38,6 +38,33 @@ AV.Cloud.beforeSave('Todo', function(req, res) {
   res.success();
 });
 
+
+const classNames = ['iCard','iDo','iUse']
+const ACLSet = (classNames)=>{
+  classNames.forEach(className =>{
+    setNormalACL(className)
+  })
+}
+
+const setNormalACL = (className)=>{
+  AV.Cloud.beforeSave(className,req => new Promise((solve, reject)=>{
+    const {object,currentUser} = req
+    if(object){
+      const acl = new AV.ACL()
+      acl.setPublicReadAccess(true);
+      //说明
+      // acl.setRoleWriteAccess('Administrator',true);
+      acl.setWriteAccess(currentUser, true);
+      object.setACL(acl);
+      solve()
+    }else {
+      reject('未发现有效的'+className+'对象')
+    }
+  }))
+}
+
+ACLSet(classNames)
+
 /**
 云函数超时示例
 https://leancloud.cn/docs/leanengine_cloudfunction_guide-node.html#超时的处理方案
