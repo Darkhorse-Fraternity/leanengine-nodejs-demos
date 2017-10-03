@@ -24,14 +24,14 @@ AV.Cloud.beforeSave('Todo', function(req, res) {
 const iUse = 'iUse'
 const iCard = 'iCard'
 const iDo = 'iDo'
-
+const useMasterKey = {useMasterKey: true }
 
 
 AV.Cloud.afterSave(iUse,req => {
   const query = new AV.Query(iCard);
   return query.get(req.object.get(iCard).id).then(function(card) {
     card.increment('useNum');
-    return card.save();
+    return card.save(null,useMasterKey);
   });
 })
 
