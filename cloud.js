@@ -39,7 +39,7 @@ AV.Cloud.afterDelete(iUse,req => {
   const query = new AV.Query(iCard);
   return query.get(req.object.get(iCard).id).then(function(card) {
     card.increment('useNum',-1);
-    return card.save();
+    return card.save(null,useMasterKey);
   });
 })
 
