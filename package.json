@@ -23,12 +23,13 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "babel-plugin-transform-strict-mode": "^6.24.1",
     "nodemon": "^1.11.0",
     "should": "^11.2.0",
     "supertest": "^3.0.0",
     "supertest-as-promised": "^4.0.2"
   },
   "engines": {
-    "node": "6.x"
+    "node": "8.x"
   }
 }
