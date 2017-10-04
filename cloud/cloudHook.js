@@ -6,7 +6,6 @@ const useMasterKey = {useMasterKey: true }
 
 
 AV.Cloud.afterSave(iUse,req => {
-    console.log('test:', '111111');
     const query = new AV.Query(iCard);
     return query.get(req.object.get(iCard).id).then(function(card) {
         card.increment('useNum');
